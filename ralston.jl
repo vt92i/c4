@@ -24,20 +24,20 @@ function ralston_method(f, t0, y0, h, num_steps)
     y_values[i+1] = y_new
 
     # Print formula in each step
-    Printf.@printf("y%d = %.2e + %.3f/3 * [f(%.3f, %.2e) + 2 * f(%.3f, %.2e)] = %.3f (%.2e), k1 = %.3f, k2 = %.3f\n", i, y, h, t, y, t + (3 / 4) * h, y + (3 / 4) * h * k1, y_new, y_new, k1, k2)
+    Printf.@printf("y%d = %.2e + %.3f/3 * [f(%.2f, %.2e) + 2 * f(%.2f, %.2e)] = %.2f (%.2e), k1 = %.2f, k2 = %.2f\n", i, y, h, t, y, t + (3 / 4) * h, y + (3 / 4) * h * k1, y_new, y_new, k1, k2)
   end
 
   return t_values, y_values
 end
 
 # ODE function
-f(t, y) = -y + exp(t)
+f(t, y) = 80 - (45y / (2000 - 5t))
 
 # Set initial conditions and parameters
 t0 = 0.0
-y0 = 1.0
+y0 = 5 * 17
 h = 0.1
-num_steps = 11
+num_steps = 7
 
 # Call the Ralston method function
 t_values, y_values = ralston_method(f, t0, y0, h, num_steps)
